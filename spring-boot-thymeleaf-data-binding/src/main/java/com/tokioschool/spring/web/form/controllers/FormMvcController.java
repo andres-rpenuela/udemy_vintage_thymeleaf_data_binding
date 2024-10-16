@@ -3,6 +3,7 @@ package com.tokioschool.spring.web.form.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,14 +15,16 @@ public class FormMvcController {
 	@GetMapping({"","/","/form"})
 	public String form(Model model) {
 		model.addAttribute("title", "Formulario usuarios");
+		model.addAttribute("userFormDto", new UserFormDTO());
 		return "form";
 	}
 	
 	@PostMapping("/form")
 	public String process(Model model, 
-			@RequestParam(name="username") String username,
+			/*@RequestParam(name="username") String username,
 			@RequestParam String password,
-			@RequestParam("email") String emailUser) {
+			@RequestParam("email") String emailUser*/
+			@ModelAttribute("userFormDto") UserFormDTO userFormDTO) {
 		
 		model.addAttribute("title", "Resultado");
 		
@@ -31,11 +34,11 @@ public class FormMvcController {
 		model.addAttribute("email", emailUser);*/
 		
 		// send to view the params wrappers in object
-		UserFormDTO userFormDTO = UserFormDTO.builder()
+		/*UserFormDTO userFormDTO = UserFormDTO.builder()
 				.name(username)
 				.email(emailUser)
 				.password(password)
-				.build();
+				.build();*/
 		
 		model.addAttribute("user", userFormDTO);
 		return "result";	

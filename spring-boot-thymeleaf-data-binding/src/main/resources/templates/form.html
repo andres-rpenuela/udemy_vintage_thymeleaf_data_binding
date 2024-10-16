@@ -9,25 +9,26 @@
 <body>
 	<h1>[[${title}]]</h1>
 	<hr>
-	<form th:action="@{/form}" method="post" enctype="application/x-www-form-urlencoded">
+	<form th:action="@{/form}" method="post" enctype="application/x-www-form-urlencoded"
+	th:object="${userFormDto}">
 		<div>
 			<label for="username">Username</label>
 			<div>
-				<input id="username" name="username" type="text">
+				<input id="username" name="username" type="text" th:field="*{name}">
 			</div>
 		</div>
 
 		<div>
 			<label for="password">Password</label>
 			<div>
-				<input id="password" name="password" type="password">
+				<input id="password" name="password" type="password" th:field="*{password}">
 			</div>
 		</div>
 
 		<div>
 			<label for="email">Email</label>
 			<div>
-				<input id="email" name="email" type="email">
+				<input id="email" name="email" type="email" th:field="*{email}">
 			</div>
 		</div>
 
