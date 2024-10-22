@@ -42,7 +42,7 @@
 				<strong th:text="${error.name}"> ${error.get('name')} === ${error.name}</strong>
 			</div>
 			-->
-			<div th:if="${#fields.hasErrors('name')}" th:errorclass="fieldError" th:errors="*{name}"></div>
+			<div th:if="${#fields.hasErrors('username')}" th:errorclass="fieldError" th:errors="*{username}"></div>
 		</div>
 
 		<div>
@@ -73,6 +73,13 @@
 			<div th:if="${#fields.hasErrors('email')}" th:errorclass="fieldError" th:errors="*{email}"></div>
 		</div>
 
+		<div>
+			<label for="email">Edad</label>
+			<div>
+				<input id="age" name="age" type="number" th:field="*{age}" th:class="${#fields.hasErrors('age')}?fieldError">
+			</div>
+			<div th:if="${#fields.hasErrors('age')}" th:errorclass="fieldError" th:errors="*{age}"></div>
+		</div>
 		<div>
 			<button type="submit">Enviar</button>
 		</div>

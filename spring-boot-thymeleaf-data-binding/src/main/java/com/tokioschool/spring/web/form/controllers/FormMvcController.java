@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.tokioschool.spring.web.form.dto.UserFormDTO;
 
@@ -18,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@SessionAttributes("userFormDto")
 public class FormMvcController {
 	
 	@GetMapping({"","/","/form"})
@@ -39,7 +42,7 @@ public class FormMvcController {
 			/*@RequestParam(name="username") String username,
 			@RequestParam String password,
 			@RequestParam("email") String emailUser*/
-			@Valid @ModelAttribute("userFormDto") UserFormDTO userFormDTO, BindingResult result) {
+			@Valid @ModelAttribute("userFormDto") UserFormDTO userFormDTO, BindingResult result, SessionStatus sessionStatus) {
 		
 		/** example 1 **/
 		// send to view param each
@@ -78,12 +81,21 @@ public class FormMvcController {
 		return "result";
 		*/
 		/** ejemplo 4 **/
-		if(result.hasErrors()) {
+		/*if(result.hasErrors()) {
 			model.addAttribute("title", "Formulario usuarios: Con errores");
 			return "form";
 		}
 		model.addAttribute("title", "Resultado");
 		model.addAttribute("user", userFormDTO);
+		return "result";*/
+		/** ejemplo 5 **/
+		if(result.hasErrors()) {
+			model.addAttribute("title", "Formulario usuarios: Con errores");
+			return "form";
+		}
+		model.addAttribute("title", "Resultado");
+		model.addAttribute("user", userFormDTO); // user != userFormDto
+		sessionStatus.setComplete(); // limpia los datos
 		return "result";
 	}
 
