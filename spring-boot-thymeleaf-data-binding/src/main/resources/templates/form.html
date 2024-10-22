@@ -4,42 +4,59 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style>
+		.fieldError{
+			color: red;
+		}
+	</style>
 </head>
 
 <body>
 	<h1>[[${title}]]</h1>
 	<hr>
+	<!-- <form th:action="@{/form}" method="post" enctype="application/x-www-form-urlencoded"> -->
 	<form th:action="@{/form}" method="post" enctype="application/x-www-form-urlencoded"
 	th:object="${userFormDto}">
 		<div>
 			<label for="username">Username</label>
 			<div>
-				<!--<input id="username" name="username" type="text" th:value="*{username}">-->
-				<input id="username" name="username" type="text" th:field="*{name}">
+				<!--<input id="username" name="username" type="text" th:value="${username}">-->
+				<input id="username" name="username" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')}?fieldError">
 			</div>
+			<!--
 			<div th:if="${error != null && error.containsKey('name')}">
 				<strong th:text="${error.name}"> ${error.get('name')} === ${error.name}</strong>
 			</div>
+			-->
+			<div th:if="${#fields.hasErrors('name')}" th:errorclass="fieldError" th:errors="*{name}"></div>
 		</div>
 
 		<div>
 			<label for="password">Password</label>
 			<div>				
-				<input id="password" name="password" type="password" th:field="*{password}">
+				<!--<input id="password" name="password" type="password">-->
+				<input id="password" name="password" type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}?fieldError" >
 			</div>
+			<!--
 			<div th:if="${error != null && error.containsKey('password')}">
 				<strong th:text="${error.password}"> ${error.get('password')} === ${error.password}</strong>
 			</div>
+			-->
+			<div th:if="${#fields.hasErrors('password')}" th:errorclass="fieldError" th:errors="*{password}"></div>
 		</div>
 
 		<div>
 			<label for="email">Email</label>
 			<div>
-				<input id="email" name="email" type="email" th:field="*{email}">
+				<!--<input id="email" name="email" type="email" th:value="${email}">-->
+				<input id="email" name="email" type="email" th:field="*{email}" th:class="${#fields.hasErrors('email')}?fieldError">
 			</div>
+			<!--
 			<div th:if="${error != null && error.containsKey('email')}">
 				<strong th:text="${error.password}"> ${error.get('email')} === ${error.email}</strong>
 			</div>
+			-->
+			<div th:if="${#fields.hasErrors('email')}" th:errorclass="fieldError" th:errors="*{email}"></div>
 		</div>
 
 		<div>

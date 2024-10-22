@@ -52,6 +52,7 @@ public class FormMvcController {
 		return "result";
 		*/	
 		/** example 3 **/
+		/*
 		if(result.hasErrors()) {
 			Map<String,String> errors = new HashMap<>();
 			result.getFieldErrors().forEach(error->{
@@ -63,6 +64,15 @@ public class FormMvcController {
 			});
 			model.addAttribute("title", "Formulario usuarios: Con errores");
 			model.addAttribute("error", errors);
+			return "form";
+		}
+		model.addAttribute("title", "Resultado");
+		model.addAttribute("user", userFormDTO);
+		return "result";
+		*/
+		/** ejemplo 4 **/
+		if(result.hasErrors()) {
+			model.addAttribute("title", "Formulario usuarios: Con errores");
 			return "form";
 		}
 		model.addAttribute("title", "Resultado");
