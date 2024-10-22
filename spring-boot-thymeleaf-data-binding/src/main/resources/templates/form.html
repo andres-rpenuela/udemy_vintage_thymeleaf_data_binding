@@ -18,10 +18,24 @@
 	<form th:action="@{/form}" method="post" enctype="application/x-www-form-urlencoded"
 	th:object="${userFormDto}">
 		<div>
+			<label for="username">Name</label>
+			<div>
+				<input id="name" name="name" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')}?fieldError">
+			</div>
+			<div th:if="${#fields.hasErrors('name')}" th:errorclass="fieldError" th:errors="*{name}"></div>
+		</div>
+		<div>
+			<label for="username">Surname</label>
+			<div>
+				<input id="surname" name="surname" type="text" th:field="*{surname}" th:class="${#fields.hasErrors('surname')}?fieldError">
+			</div>
+			<div th:if="${#fields.hasErrors('surname')}" th:errorclass="fieldError" th:errors="*{surname}"></div>
+		</div>
+		<div>
 			<label for="username">Username</label>
 			<div>
 				<!--<input id="username" name="username" type="text" th:value="${username}">-->
-				<input id="username" name="username" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')}?fieldError">
+				<input id="username" name="username" type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}?fieldError">
 			</div>
 			<!--
 			<div th:if="${error != null && error.containsKey('name')}">

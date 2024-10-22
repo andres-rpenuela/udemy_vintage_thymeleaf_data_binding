@@ -12,6 +12,9 @@
 	<table>
 		<thead>
 			<tr>
+				<td>Name</td>
+				<td>Surname</td>
+				<td>Identification</td>
 				<td>Username</td>
 				<td>Password</td>
 				<td>Email</td>
@@ -24,6 +27,9 @@
 				<td th:text="${password}"></td>
 				<td th:text="${email}"></td>
 				-->
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.surname}"></td>
+				<td th:text="${user.identificador}"></td>
 				<td th:text="${user.name}"></td>
 				<td th:text="${user.password}"></td>
 				<td th:text="${user.email}"></td>

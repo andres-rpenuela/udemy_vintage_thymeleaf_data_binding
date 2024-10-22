@@ -22,9 +22,16 @@ public class FormMvcController {
 	
 	@GetMapping({"","/","/form"})
 	public String form(Model model) {
-		model.addAttribute("title", "Formulario usuarios");
+		/** ejemplo 1- 4 **/
+		/*model.addAttribute("title", "Formulario usuarios");
 		model.addAttribute("userFormDto", new UserFormDTO());
+		return "form";*/
+		/** ejemplo 5 **/
+		final UserFormDTO userFormDTO = UserFormDTO.builder().name("Andres").surname("Jhon").identificador("123.523.132-K").build();
+		model.addAttribute("title", "Formulario usuarios");
+		model.addAttribute("userFormDto", userFormDTO);
 		return "form";
+		
 	}
 	
 	@PostMapping("/form")
