@@ -22,7 +22,7 @@ public class UserFormValidator implements Validator {
 		
 		/** Ejemplo de validacion usando ValidationUtils de Spring **/
 		// nombre del atrituo a validar, key del mensaje de error definido en messaje.properites
-		ValidationUtils.rejectIfEmpty(errors, "name", "NotEmpty.userFormDto.name");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty.userFormDto.name");
 		/*
 		// alternativa
 		if(user.getName().isEmpty()) {

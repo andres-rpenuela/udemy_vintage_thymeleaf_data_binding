@@ -3,7 +3,9 @@ package com.tokioschool.spring.web.form.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -22,10 +24,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class FormMvcController {
 	
-	
 	private final UserFormValidator userFormValidator;
 	
-	@GetMapping({"","/","/form"})
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		//binder.setValidator(userFormValidator); // se cepilla todos los validadores
+		binder.addValidators(userFormValidator); // cohexiste con el resto de validadoress
+	}
+	
+	@GetMapping( )
 	public String form(Model model) {
 		/** ejemplo 1- 4 **/
 		/*model.addAttribute("title", "Formulario usuarios");
@@ -101,7 +108,19 @@ public class FormMvcController {
 		sessionStatus.setComplete(); // limpia los datos
 		return "result";*/
 		/** ejemplo 6 **/
+		/*
 		userFormValidator.validate(userFormDTO, result); //BindingResult es de tipo Errors
+		if(result.hasErrors()) {
+			model.addAttribute("title", "Formulario usuarios: Con errores");
+			return "form";
+		}
+		model.addAttribute("title", "Resultado");
+		model.addAttribute("user", userFormDTO); // user != userFormDto
+		sessionStatus.setComplete(); // limpia los datos
+		return "result";
+		*/
+		/** ejemplo 6 **/
+		//userFormValidator.validate(userFormDTO, result); // registrado en initbinder
 		if(result.hasErrors()) {
 			model.addAttribute("title", "Formulario usuarios: Con errores");
 			return "form";
