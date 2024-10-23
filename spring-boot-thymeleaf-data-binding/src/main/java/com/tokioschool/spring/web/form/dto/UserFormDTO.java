@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,15 +16,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserFormDTO {
 	@NotEmpty
-	@Size(min=3,max = 8) //number digits, only string
+	@Size(min=3,max = 8,message = "Tamaño no permitido") //number digits, only string
 	private String username;
-	@NotEmpty
+	@NotEmpty(message="El nombre no puede ser vacío")
 	private String name;
 	@NotEmpty
 	private String surname;
 	@NotEmpty
 	private String password;
-	@Email // notempty + fomart email
+	
+	@NotEmpty
+	@Email(message="Email incorrecto") 
 	private String email;
 	
 	@Min(5) @Max(90) // range of number
@@ -31,5 +34,8 @@ public class UserFormDTO {
 
 	// no estará en el formulario como input, por lo que al recibir el formulario, Spring
 	// pone el campo del objeto a nulo, para solventarlo, usar "Session Attribute" o "input hidden"
-	private String identificador; 
+	private String identificador;
+	
+	//@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+	private String identificadorNumber;
 }
