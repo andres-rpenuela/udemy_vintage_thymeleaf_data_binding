@@ -1,5 +1,7 @@
 package com.tokioschool.spring.web.form.dto;
 
+import com.tokioschool.spring.web.form.validation.identification.IdentificationRegex;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -37,5 +39,6 @@ public class UserFormDTO {
 	private String identificador;
 	
 	//@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+	@IdentificationRegex
 	private String identificadorNumber;
 }

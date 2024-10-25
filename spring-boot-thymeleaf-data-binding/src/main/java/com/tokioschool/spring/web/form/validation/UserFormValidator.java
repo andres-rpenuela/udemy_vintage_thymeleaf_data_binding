@@ -31,11 +31,12 @@ public class UserFormValidator implements Validator {
 		*/
 		
 		/** Ejemplo de validacion manual **/
+		/*
 		if(user.getIdentificadorNumber().matches("[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") == false) {
 			// nombre del atrituo a validar, key del mensaje de error definido en messaje.properites 
 			// si no existe, se crea
 			errors.rejectValue("identificadorNumber", "pattern.usuario.identificadorNumber");
-		}
+		}*/
 	}
 
 }
