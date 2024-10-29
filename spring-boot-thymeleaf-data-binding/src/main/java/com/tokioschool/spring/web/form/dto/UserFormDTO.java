@@ -1,6 +1,7 @@
 package com.tokioschool.spring.web.form.dto;
 
 import com.tokioschool.spring.web.form.validation.identification.IdentificationRegex;
+import com.tokioschool.spring.web.form.validation.requeried.Requeried;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -14,31 +15,41 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class UserFormDTO {
-	@NotEmpty
-	@Size(min=3,max = 8,message = "Tamaño no permitido") //number digits, only string
+	//@NotEmpty
+	@Requeried
+	@Size(min = 3, max = 8, message = "Tamaño no permitido") // number digits, only string
 	private String username;
-	@NotEmpty(message="El nombre no puede ser vacío")
+	
+	//@NotEmpty(message = "El nombre no puede ser vacío")
+	@Requeried
 	private String name;
-	@NotEmpty
+	// @NotEmpty
+	@Requeried
 	private String surname;
-	@NotEmpty
+	// @NotEmpty
+	@Requeried
 	private String password;
-	
-	@NotEmpty
-	@Email(message="Email incorrecto") 
+
+	// @NotEmpty
+	@Requeried
+	@Email(message = "Email incorrecto")
 	private String email;
-	
-	@Min(5) @Max(90) // range of number
+
+	@Min(5)
+	@Max(90) // range of number
 	private Integer age;
 
-	// no estará en el formulario como input, por lo que al recibir el formulario, Spring
-	// pone el campo del objeto a nulo, para solventarlo, usar "Session Attribute" o "input hidden"
+	// no estará en el formulario como input, por lo que al recibir el formulario,
+	// Spring
+	// pone el campo del objeto a nulo, para solventarlo, usar "Session Attribute" o
+	// "input hidden"
 	private String identificador;
-	
-	//@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+
+	// @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
 	@IdentificationRegex
 	private String identificadorNumber;
 }
