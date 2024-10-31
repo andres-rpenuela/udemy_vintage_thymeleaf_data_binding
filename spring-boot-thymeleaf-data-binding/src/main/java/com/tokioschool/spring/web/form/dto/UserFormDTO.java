@@ -1,5 +1,7 @@
 package com.tokioschool.spring.web.form.dto;
 
+import java.util.Date;
+
 import com.tokioschool.spring.web.form.validation.identification.IdentificationRegex;
 import com.tokioschool.spring.web.form.validation.requeried.Requeried;
 
@@ -57,4 +59,8 @@ public class UserFormDTO {
 	// @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
 	@IdentificationRegex
 	private String identificadorNumber;
+	
+	
+	@NotNull
+	private Date birthDate;
 }

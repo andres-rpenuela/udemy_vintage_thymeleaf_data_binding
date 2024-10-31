@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.tokioschool.spring.web.form.dto.UserFormDTO;
 import com.tokioschool.spring.web.form.validation.UserFormValidator;
@@ -32,7 +33,7 @@ public class FormMvcController {
 		binder.addValidators(userFormValidator); // cohexiste con el resto de validadoress
 	}
 	
-	@GetMapping( )
+	@GetMapping({"","/"})
 	public String form(Model model) {
 		/** ejemplo 1- 4 **/
 		/*model.addAttribute("title", "Formulario usuarios");
@@ -46,6 +47,10 @@ public class FormMvcController {
 		
 	}
 	
+	@GetMapping("/form")
+	public RedirectView loadForm() {
+		return new RedirectView("");
+	}
 	@PostMapping("/form")
 	public String process(Model model, 
 			/*@RequestParam(name="username") String username,
@@ -53,6 +58,7 @@ public class FormMvcController {
 			@RequestParam("email") String emailUser*/
 			@Valid @ModelAttribute("userFormDto") UserFormDTO userFormDTO, BindingResult result, SessionStatus sessionStatus) {
 		
+			
 		/** example 1 **/
 		// send to view param each
 		/*model.addAttribute("username", username);
@@ -131,4 +137,9 @@ public class FormMvcController {
 		return "result";
 	}
 
+	@ModelAttribute("userFormDto")
+	public UserFormDTO userUserFormDto() {
+		return UserFormDTO.builder().build();
+	}
+	
 }
