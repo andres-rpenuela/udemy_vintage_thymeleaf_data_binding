@@ -12,6 +12,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -66,5 +67,6 @@ public class UserFormDTO {
 	@NotNull
 	//@DateTimeFormat(pattern = "yyyy/MM/dd" ) // esto se aplico solo para el fiel de la validacin
 	@DateTimeFormat(pattern = "yyyy-MM-dd" ) // patron en caso de usar input date de HTML 5
+	@PastOrPresent
 	private Date birthDate;
 }
