@@ -83,7 +83,7 @@
 		<div>
 			<label for="email">Cuenta</label>
 			<div>
-				<input id="account" name="account" type="account" th:field="*{account}" th:class="${#fields.hasErrors('account')}?fieldError">
+				<input id="account" name="account" type="text" th:field="*{account}" th:class="${#fields.hasErrors('account')}?fieldError">
 			</div>
 			<div th:if="${#fields.hasErrors('account')}" th:errorclass="fieldError" th:errors="*{account}"></div>
 		</div>
@@ -99,7 +99,7 @@
 		<div>
 			<label for="email">Fecha de cumpleaños</label>
 			<div>
-				<input id="birthDate" name="birthDate" type="text" th:field="*{birthDate}" th:class="${#fields.hasErrors('birthDate')}?fieldError"
+				<input id="birthDate" name="birthDate" type="date" th:field="*{birthDate}" th:class="${#fields.hasErrors('birthDate')}?fieldError"
 				placeholder="YYYY/MM/dd">
 			</div>
 			<div th:if="${#fields.hasErrors('birthDate')}" th:errorclass="fieldError" th:errors="*{birthDate}"></div>

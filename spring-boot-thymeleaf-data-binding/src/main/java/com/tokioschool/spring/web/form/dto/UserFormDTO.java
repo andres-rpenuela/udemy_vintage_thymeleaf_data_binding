@@ -2,6 +2,8 @@ package com.tokioschool.spring.web.form.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.tokioschool.spring.web.form.validation.identification.IdentificationRegex;
 import com.tokioschool.spring.web.form.validation.requeried.Requeried;
 
@@ -62,5 +64,7 @@ public class UserFormDTO {
 	
 	
 	@NotNull
+	//@DateTimeFormat(pattern = "yyyy/MM/dd" ) // esto se aplico solo para el fiel de la validacin
+	@DateTimeFormat(pattern = "yyyy-MM-dd" ) // patron en caso de usar input date de HTML 5
 	private Date birthDate;
 }
