@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -41,8 +42,12 @@ public class UserFormDTO {
 
 	@Min(5)
 	@Max(90) // range of number
-	private Integer age;
+	private int age;
 
+	@NotNull
+	@Min(5)
+	@Max(90) // range of number
+	private Integer account;
 	// no estará en el formulario como input, por lo que al recibir el formulario,
 	// Spring
 	// pone el campo del objeto a nulo, para solventarlo, usar "Session Attribute" o
