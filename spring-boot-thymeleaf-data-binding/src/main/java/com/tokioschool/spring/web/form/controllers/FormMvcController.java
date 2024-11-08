@@ -1,5 +1,11 @@
 package com.tokioschool.spring.web.form.controllers;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +37,11 @@ public class FormMvcController {
 	public void initBinder(WebDataBinder binder) {
 		//binder.setValidator(userFormValidator); // se cepilla todos los validadores
 		binder.addValidators(userFormValidator); // cohexiste con el resto de validadoress
+		
+		// alternativa a @DataTimeFormatter("yyyy-MM-dd")
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		simpleDateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(simpleDateFormat, false));
 	}
 	
 	@GetMapping({"","/"})

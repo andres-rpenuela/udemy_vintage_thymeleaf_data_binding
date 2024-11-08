@@ -66,7 +66,7 @@ public class UserFormDTO {
 	
 	@NotNull
 	//@DateTimeFormat(pattern = "yyyy/MM/dd" ) // esto se aplico solo para el fiel de la validacin
-	@DateTimeFormat(pattern = "yyyy-MM-dd" ) // patron en caso de usar input date de HTML 5
+	//@DateTimeFormat(pattern = "yyyy-MM-dd" ) // patron en caso de usar input date de HTML 5, se valida con InitBinder
 	@PastOrPresent
 	private Date birthDate;
 }
